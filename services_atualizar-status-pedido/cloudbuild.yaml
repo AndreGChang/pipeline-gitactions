@@ -6,7 +6,7 @@ steps:
       - |
         gcloud functions deploy atualizar-status-pedido \
         --region=us-central1 \
-        --runtime python312 \
+        --runtime python311 \
         --trigger-http \
         --allow-unauthenticated \
         --source=. \
