@@ -1,0 +1,44 @@
+name: Deploy Cloud Functions
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Cloud Functions
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        service: [
+          "services_atualizar-status-pedido",
+          "services_delete-pedido",
+          "services_detalhar-pedido",
+          "services_listar-pedidos",
+          "services_logar-usuario",
+          "services_registrar-usuario",
+          "services_salvar-pedido",
+          "services_validar-token"
+        ]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          version: 'latest'
+
+      - name: Deploy Cloud Function
+        run: |
+          cd ${{ matrix.service }}
+          gcloud builds submit --config cloudbuild.yaml

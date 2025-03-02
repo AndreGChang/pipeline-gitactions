@@ -1,0 +1,13 @@
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud functions deploy validar-token \
+        --region=us-central1 \
+        --runtime python312 \
+        --trigger-http \
+        --allow-unauthenticated \
+        --source=. \
+        --entry-point=validate_token

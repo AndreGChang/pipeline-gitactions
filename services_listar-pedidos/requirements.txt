@@ -1,0 +1,5 @@
+functions-framework==3.*
+google-cloud-firestore==2.16.0
+flask
+firebase-admin
+
