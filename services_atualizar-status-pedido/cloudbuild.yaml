@@ -10,4 +10,4 @@ steps:
         --trigger-http \
         --allow-unauthenticated \
         --source=. \
-        --entry-point=atualizar_status_pedido
+        --entry-point=aualizar_status_pedido

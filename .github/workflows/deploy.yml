@@ -40,5 +40,6 @@ jobs:
 
       - name: Deploy Cloud Function
         run: |
+          ls -la
           cd ${{ matrix.service }}
           gcloud builds submit --config cloudbuild.yaml
